@@ -1,9 +1,0 @@
-{
-    "C_Cpp.errorSquiggles": "disabled",
-    "files.associations": {
-        "stdio.h": "c",
-        "time.h": "c",
-        "globals.h": "c",
-        "structures.h": "c"
-    }
-}
