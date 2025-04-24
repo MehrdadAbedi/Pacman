@@ -23,7 +23,7 @@ void teleport(GameElements *game_elements)
         {
             game_elements->pacman->flash_position.y = game_elements->pacman->j + game_elements->zero_point->y - 200 + game_elements->pacman->flash_move; 
             game_elements->pacman->flash_move--;
-            if(game_elements->pacman->flash_move <= -40)
+            if(game_elements->pacman->flash_move <= -game_elements->BlockSize)
             {
                 game_elements->pacman->flash_flag = false;
             }
@@ -42,60 +42,60 @@ void teleport(GameElements *game_elements)
     int number = GetRandomValue(0, 3);
     int gates[4][3] = {{3, 2, 0}, {27, 3, 3}, {26, 27, 1}, {2, 26, 2}};
     char directions[4] = {'u', 'd', 'r', 'l'};
-    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, 40, 40},
-    (Rectangle) {gates[0][1] * 40 + game_elements->zero_point->x, gates[0][0] * 40 + game_elements->zero_point->y, 40, 40}) && game_elements->border->time >= 10)
+    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize},
+    (Rectangle) {gates[0][1] * game_elements->BlockSize + game_elements->zero_point->x, gates[0][0] * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize}) && game_elements->border->time >= 10)
     {
         while(number == 0)
         {
             number = GetRandomValue(0, 3);
         }
-        game_elements->pacman->i = gates[number][1] * 40;
-        game_elements->pacman->j = gates[number][0] * 40;
+        game_elements->pacman->i = gates[number][1] * game_elements->BlockSize;
+        game_elements->pacman->j = gates[number][0] * game_elements->BlockSize;
         game_elements->pacman->direction = directions[gates[number][2]];
         game_elements->border->time = 0;
     }
-    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, 40, 40},
-    (Rectangle) {gates[1][1] * 40 + game_elements->zero_point->x, gates[1][0] * 40 + game_elements->zero_point->y, 40, 40}) && game_elements->border->time >= 10)
+    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize},
+    (Rectangle) {gates[1][1] * game_elements->BlockSize + game_elements->zero_point->x, gates[1][0] * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize}) && game_elements->border->time >= 10)
     {
         while(number == 1)
         {
             number = GetRandomValue(0, 3);
         }        
-        game_elements->pacman->i = gates[number][1] * 40;
-        game_elements->pacman->j = gates[number][0] * 40 ;
+        game_elements->pacman->i = gates[number][1] * game_elements->BlockSize;
+        game_elements->pacman->j = gates[number][0] * game_elements->BlockSize ;
         game_elements->pacman->direction = directions[gates[number][2]];
         game_elements->border->time = 0;
     }
-    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, 40, 40},
-    (Rectangle) {gates[2][1] * 40 + game_elements->zero_point->x, gates[2][0] * 40 + game_elements->zero_point->y, 40, 40}) && game_elements->border->time >= 10)
+    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize},
+    (Rectangle) {gates[2][1] * game_elements->BlockSize + game_elements->zero_point->x, gates[2][0] * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize}) && game_elements->border->time >= 10)
     {
         while(number == 2)
         {
             number = GetRandomValue(0, 3);
         }        
-        game_elements->pacman->i = gates[number][1] * 40;
-        game_elements->pacman->j = gates[number][0] * 40;
+        game_elements->pacman->i = gates[number][1] * game_elements->BlockSize;
+        game_elements->pacman->j = gates[number][0] * game_elements->BlockSize;
         game_elements->pacman->direction = directions[gates[number][2]];
         game_elements->border->time = 0;
     }
-    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, 40, 40},
-    (Rectangle) {gates[3][1] * 40 + game_elements->zero_point->x, gates[3][0] * 40 + game_elements->zero_point->y, 40, 40}) && game_elements->border->time >= 10)
+    if(CheckCollisionRecs((Rectangle){game_elements->pacman->i + game_elements->zero_point->x, game_elements->pacman->j + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize},
+    (Rectangle) {gates[3][1] * game_elements->BlockSize + game_elements->zero_point->x, gates[3][0] * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize}) && game_elements->border->time >= 10)
     {
         while(number == 3)
         {
             number = GetRandomValue(0, 3);
         }        
-        game_elements->pacman->i = gates[number][1] * 40;
-        game_elements->pacman->j = gates[number][0] * 40;
+        game_elements->pacman->i = gates[number][1] * game_elements->BlockSize;
+        game_elements->pacman->j = gates[number][0] * game_elements->BlockSize;
         game_elements->pacman->direction = directions[gates[number][2]];
         game_elements->border->time = 0;
     }
     if(game_elements->border->time > 10)
     {
-        DrawTexture(game_elements->border->hole, 2 * 40 + game_elements->zero_point->x, 3 * 40 + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
-        DrawTexture(game_elements->border->hole, 3 * 40 + game_elements->zero_point->x, 27 * 40 + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
-        DrawTexture(game_elements->border->hole, 27 * 40 + game_elements->zero_point->x, 26 * 40 + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
-        DrawTexture(game_elements->border->hole, 26 * 40 + game_elements->zero_point->x, 2 * 40 + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
+        DrawTexture(game_elements->border->hole, 2 * game_elements->BlockSize + game_elements->zero_point->x, 3 * game_elements->BlockSize + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
+        DrawTexture(game_elements->border->hole, 3 * game_elements->BlockSize + game_elements->zero_point->x, 27 * game_elements->BlockSize + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
+        DrawTexture(game_elements->border->hole, 27 * game_elements->BlockSize + game_elements->zero_point->x, 26 * game_elements->BlockSize + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
+        DrawTexture(game_elements->border->hole, 26 * game_elements->BlockSize + game_elements->zero_point->x, 2 * game_elements->BlockSize + game_elements->zero_point->y, (Color) {255, 255, 255, i < 255 ? i += GetFrameTime() * 127.5 : 255});
     }
 }
 void pacman_location(GameElements *game_elements)
@@ -105,8 +105,8 @@ void pacman_location(GameElements *game_elements)
         game_elements->pacman->j = rand() % game_elements->board_size->cols;
     } while(game_elements->Board[(int) game_elements->pacman->j][(int) game_elements->pacman->i] != 0);
     
-    game_elements->pacman->i *= 40;
-    game_elements->pacman->j *= 40;
+    game_elements->pacman->i *= game_elements->BlockSize;
+    game_elements->pacman->j *= game_elements->BlockSize;
     game_elements->pacman->direction = '\0';
 }
 int pacman_move(GameElements *game_elements)
@@ -125,7 +125,7 @@ int pacman_move(GameElements *game_elements)
         {
             game_elements->pacman->flash_position.y = game_elements->pacman->j + game_elements->zero_point->y - 200 + game_elements->pacman->flash_move; 
             game_elements->pacman->flash_move--;
-            if(game_elements->pacman->flash_move <= -40)
+            if(game_elements->pacman->flash_move <= -game_elements->BlockSize)
             {
                 game_elements->pacman->flash_flag = false;
             }
@@ -145,28 +145,28 @@ int pacman_move(GameElements *game_elements)
 
         if(game_elements->pacman->direction == 'u')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.5);
-            current_row = rounds(game_elements->pacman->j, 40, 0.1);        
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.5);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.1);        
         }
         else if(game_elements->pacman->direction == 'd')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.5);
-            current_row = rounds(game_elements->pacman->j, 40, 0.9);        
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.5);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.9);        
         }
         else if(game_elements->pacman->direction == 'r')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.9);
-            current_row = rounds(game_elements->pacman->j, 40, 0.5);
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.9);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.5);
         }
         else if(game_elements->pacman->direction == 'l')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.1);
-            current_row = rounds(game_elements->pacman->j, 40, 0.5);        
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.1);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.5);        
         }
         else
         {
-            current_col = game_elements->pacman->i / 40;
-            current_row = game_elements->pacman->j / 40; 
+            current_col = game_elements->pacman->i / game_elements->BlockSize;
+            current_row = game_elements->pacman->j / game_elements->BlockSize; 
         }
 
         if(IsKeyPressed(KEY_UP))
@@ -187,8 +187,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'u';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         else if (game_elements->pacman->last_direction == 'd' && current_row != game_elements->board_size->rows - 1 && game_elements->Board[current_row + 1][current_col] != 1)
         {
@@ -199,8 +199,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'd';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         else if(game_elements->pacman->last_direction == 'r' && current_col != game_elements->board_size->cols - 1 && game_elements->Board[current_row][current_col + 1] != 1)
         {
@@ -212,8 +212,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'r';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         else if(game_elements->pacman->last_direction == 'l' && current_col != 0 && game_elements->Board[current_row][current_col - 1] != 1)
         {
@@ -224,8 +224,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'l';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         
         if(current_row != 0 && game_elements->pacman->direction == 'u' && game_elements->Board[current_row - 1][current_col] != 1)
@@ -303,28 +303,28 @@ int pacman_move(GameElements *game_elements)
 
         if(game_elements->pacman->direction == 'u')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.5);
-            current_row = rounds(game_elements->pacman->j, 40, 0.1);        
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.5);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.1);        
         }
         else if(game_elements->pacman->direction == 'd')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.5);
-            current_row = rounds(game_elements->pacman->j, 40, 0.9);        
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.5);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.9);        
         }
         else if(game_elements->pacman->direction == 'r')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.9);
-            current_row = rounds(game_elements->pacman->j, 40, 0.5);
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.9);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.5);
         }
         else if(game_elements->pacman->direction == 'l')
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.1);
-            current_row = rounds(game_elements->pacman->j, 40, 0.5);        
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.1);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.5);        
         }
         else
         {
-            current_col = rounds(game_elements->pacman->i, 40, 0.5);
-            current_row = rounds(game_elements->pacman->j, 40, 0.1);   
+            current_col = rounds(game_elements->pacman->i, game_elements->BlockSize, 0.5);
+            current_row = rounds(game_elements->pacman->j, game_elements->BlockSize, 0.1);   
         }
 
         if(IsKeyPressed(KEY_UP))
@@ -345,8 +345,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'u';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         else if (game_elements->pacman->last_direction == 'd' && game_elements->pacman->direction != 'd' && current_row != game_elements->board_size->rows - 1 && game_elements->Board[current_row + 1][current_col] != 1)
         {
@@ -357,8 +357,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'd';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         else if(game_elements->pacman->last_direction == 'r' && game_elements->pacman->direction != 'r' && current_col != game_elements->board_size->cols - 1 && game_elements->Board[current_row][current_col + 1] != 1)
         {
@@ -370,8 +370,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'r';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         else if(game_elements->pacman->last_direction == 'l'  && game_elements->pacman->direction != 'l' && current_col != 0 && game_elements->Board[current_row][current_col - 1] != 1)
         {
@@ -382,8 +382,8 @@ int pacman_move(GameElements *game_elements)
             }
             game_elements->pacman->direction = 'l';
             game_elements->pacman->last_direction = '\0';
-            game_elements->pacman->i = current_col * 40;
-            game_elements->pacman->j = current_row * 40;
+            game_elements->pacman->i = current_col * game_elements->BlockSize;
+            game_elements->pacman->j = current_row * game_elements->BlockSize;
         }
         
         if(current_row != 0 && game_elements->pacman->direction == 'u' && game_elements->Board[current_row - 1][current_col] != 1)

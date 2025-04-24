@@ -289,62 +289,62 @@ void get_map(const char *filename, GameElements *game_elements)
 }
 void show_map1(GameElements *game_elements)
 {
-    DrawTexture(game_elements->border->up_left_border, -40 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_left_border, -1 * game_elements->BlockSize + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     DrawTexture(game_elements->border->down_right_border, 1400 + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_left_border, -40 + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->up_right_border, 1400 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_left_border, -1 * game_elements->BlockSize + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_right_border, 1400 + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
 
     for (int i = 0; i < game_elements->board_size->cols; i++) {
-        DrawTexture(game_elements->border->row_border, i * 40 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->row_border, i * 40 + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
-        DrawTexture(game_elements->border->column_border, -40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->column_border, 1400 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, -game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, 1400 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
         for (int i = 0; i < game_elements->board_size->cols; i++) {
             if (game_elements->Board[j][i] == 1) {
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, BLUE);
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BLUE);
             } else if (game_elements->Board[j][i] == 2) {
-                DrawCircle(i * 40 + 20 + game_elements->zero_point->x, j * 40 + 20 + game_elements->zero_point->y, 10, RED);
+                DrawCircle(i * game_elements->BlockSize + 20 + game_elements->zero_point->x, j * game_elements->BlockSize + 20 + game_elements->zero_point->y, 10, RED);
             }
         }
     }
 }
 void show_map2(GameElements *game_elements)
 {
-    DrawTexture(game_elements->border->cyclone[(game_elements->border->I / 12) % 12], 8 * 40 + game_elements->zero_point->x, 14 * 40 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->cyclone[(game_elements->border->I / 12) % 12], 18 * 40 + game_elements->zero_point->x, 14 * 40 + game_elements->zero_point->y, WHITE);    
+    DrawTexture(game_elements->border->cyclone[(game_elements->border->I / 12) % 12], 8 * game_elements->BlockSize + game_elements->zero_point->x, 14 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->cyclone[(game_elements->border->I / 12) % 12], 18 * game_elements->BlockSize + game_elements->zero_point->x, 14 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);    
     
-    DrawTexture(game_elements->border->up_left_border, -40 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_left_border, -game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     DrawTexture(game_elements->border->down_right_border, 1200 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_left_border, -40 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->up_right_border, 1200 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_left_border, -game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_right_border, 1200 + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
 
     for (int i = 0; i < game_elements->board_size->cols; i++) {
-        DrawTexture(game_elements->border->row_border, i * 40 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->row_border, i * 40 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
-        DrawTexture(game_elements->border->column_border, -40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->column_border, 1200 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, -game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, 1200 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     Color CREAM = { 255, 253, 208, 255 };
     for (int j = 0; j < game_elements->board_size->rows; j++) {
         for (int i = 0; i < game_elements->board_size->cols; i++) {
             if (game_elements->Board[j][i] == 1 && j > 8) {
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, CREAM);
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, CREAM);
             } 
             else if (game_elements->Board[j][i] == 1 && j <= 8) {
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, BROWN);
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BROWN);
             } 
             else if (game_elements->Board[j][i] == 2) {
-                DrawCircle(i * 40 + 20 + game_elements->zero_point->x, j * 40 + 20 + game_elements->zero_point->y, 10, RED);
+                DrawCircle(i * game_elements->BlockSize + 20 + game_elements->zero_point->x, j * game_elements->BlockSize + 20 + game_elements->zero_point->y, 10, RED);
             }
         }
     }
@@ -354,14 +354,14 @@ void show_map2(GameElements *game_elements)
         for(int j = 22; j < 28; j++)
         {
             if(game_elements->Board[j][i] == 1)
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, BROWN);
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BROWN);
         }
     }
 
     for(int i = 8; i < 22; i++)
     {
         if(game_elements->Board[20][i] == 1)
-            DrawRectangle(i * 40 + game_elements->zero_point->x, 20 * 40 + game_elements->zero_point->y, 40, 40, BROWN);
+            DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, 20 * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BROWN);
     }
 
     for(int i = 8; i < 22; i++)
@@ -369,14 +369,14 @@ void show_map2(GameElements *game_elements)
         for(int j = 14; j < 18; j++)
         {
             if(game_elements->Board[j][i] == 1 && (i < 12 || i > 17))
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, BLUE);            
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BLUE);            
         }
     }
 
     for(int i = 13; i < 17; i++)
     {
-        DrawRectangle(i * 40 + game_elements->zero_point->x, 18 * 40 + game_elements->zero_point->y, 40, 40, ORANGE);
-        DrawRectangle(i * 40 + game_elements->zero_point->x, 19 * 40 + game_elements->zero_point->y, 40, 40, ORANGE);
+        DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, 18 * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, ORANGE);
+        DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, 19 * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, ORANGE);
     }
 
     for(int i = 0; i < 30; i++)
@@ -384,34 +384,34 @@ void show_map2(GameElements *game_elements)
         for(int j = 9; j < 13; j++)
         {
             if(game_elements->Board[j][i] == 1 && (i < 5 || i > 24))   
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, BROWN);
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BROWN);
         }
     }
     game_elements->border->I++;
 }
 void show_map3(GameElements *game_elements)
 {
-    DrawTexture(game_elements->border->up_left_border, -40 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_left_border, -game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     DrawTexture(game_elements->border->down_right_border, 1200 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_left_border, -40 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->up_right_border, 1200 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_left_border, -game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_right_border, 1200 + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
 
     for (int i = 0; i < game_elements->board_size->cols; i++) {
-        DrawTexture(game_elements->border->row_border, i * 40 + game_elements->zero_point->x, -40 + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->row_border, i * 40 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
-        DrawTexture(game_elements->border->column_border, -40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->column_border, 1200 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, -game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, 1200 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
         for (int i = 0; i < game_elements->board_size->cols; i++) {
             if (game_elements->Board[j][i] == 1) {
-                DrawRectangle(i * 40 + game_elements->zero_point->x, j * 40 + game_elements->zero_point->y, 40, 40, (Color) {50, 140, 22, 255});
+                DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, (Color) {50, 140, 22, 255});
             } else if (game_elements->Board[j][i] == 2) {
-                DrawCircle(i * 40 + 20 + game_elements->zero_point->x, j * 40 + 20 + game_elements->zero_point->y, 10, YELLOW);
+                DrawCircle(i * game_elements->BlockSize + 20 + game_elements->zero_point->x, j * game_elements->BlockSize + 20 + game_elements->zero_point->y, 10, YELLOW);
             }
         }
     }

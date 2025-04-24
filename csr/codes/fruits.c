@@ -9,24 +9,24 @@ void random_position_fruits(Ghost *ghost, GameElements *game_elements)
         ghost->i = GetRandomValue(0, game_elements->board_size->cols - 1);
         ghost->j = GetRandomValue(0, game_elements->board_size->rows - 1);
     } while(game_elements->Board[ghost->j][ghost->i] == 1);
-    ghost->i *= 40;
-    ghost->j *= 40;
+    ghost->i *= game_elements->BlockSize;
+    ghost->j *= game_elements->BlockSize;
 }
 void init_direction_fruits(Ghost *ghost, GameElements *game_elements)
 {
-    if(game_elements->Board[ghost->j / 40 + 1][ghost->i / 40] == 0)
+    if(game_elements->Board[ghost->j / game_elements->BlockSize + 1][ghost->i / game_elements->BlockSize] == 0)
     {
         ghost->direction = 'd';
     }
-    else if(game_elements->Board[ghost->j / 40 - 1][ghost->i / 40] == 0)
+    else if(game_elements->Board[ghost->j / game_elements->BlockSize - 1][ghost->i / game_elements->BlockSize] == 0)
     {
         ghost->direction = 'u';
     }    
-    else if(game_elements->Board[ghost->j / 40][ghost->i / 40 + 1] == 0)
+    else if(game_elements->Board[ghost->j / game_elements->BlockSize][ghost->i / game_elements->BlockSize + 1] == 0)
     {
         ghost->direction = 'r';
     }    
-    else if(game_elements->Board[ghost->j / 40][ghost->i / 40 - 1] == 0)
+    else if(game_elements->Board[ghost->j / game_elements->BlockSize][ghost->i / game_elements->BlockSize - 1] == 0)
     {
         ghost->direction = 'l';
     }
@@ -38,13 +38,13 @@ void init_fruit(Fruit *fruit, GameElements *game_elements)
         fruit->j = rand() % game_elements->board_size->rows;
     } while(game_elements->Board[fruit->j][fruit->i] != 0);
     
-    fruit->i *= 40;
-    fruit->j *= 40;
+    fruit->i *= game_elements->BlockSize;
+    fruit->j *= game_elements->BlockSize;
 }
 int fruit_collison(GameElements *game_elements, Fruit *fruit)
 {
-    Rectangle pacman_rec = {game_elements->pacman->i, game_elements->pacman->j, 40, 40};
-    Rectangle fruit_rec = {fruit->i, fruit->j, 40, 40};
+    Rectangle pacman_rec = {game_elements->pacman->i, game_elements->pacman->j, game_elements->BlockSize, game_elements->BlockSize};
+    Rectangle fruit_rec = {fruit->i, fruit->j, game_elements->BlockSize, game_elements->BlockSize};
 
     if(CheckCollisionRecs(pacman_rec, fruit_rec))
     {
@@ -133,29 +133,29 @@ void pepper_handling(GameElements *game_elements)
         Vector2 cherrytextsize = MeasureTextEx(game_elements->menu->font, cherrytext, 50, 1);
         if(game_elements->fruits->Cherry->ability_flag)
         {
-            DrawTextEx(game_elements->menu->font, text, (Vector2) {(game_elements->board_size->cols) * 40 + game_elements->zero_point->x - 160 - textsize.x - cherrytextsize.x, -3 * 40 + game_elements->zero_point->y + 15},
+            DrawTextEx(game_elements->menu->font, text, (Vector2) {(game_elements->board_size->cols) * game_elements->BlockSize + game_elements->zero_point->x - 160 - textsize.x - cherrytextsize.x, -3 * game_elements->BlockSize + game_elements->zero_point->y + 15},
             50, 1, YELLOW);
-            DrawTexture(game_elements->fruits->Pepper->fruit_texture80, (game_elements->board_size->cols) * 40 + game_elements->zero_point->x - 260 - textsize.x - cherrytextsize.x, -3 * 40 + game_elements->zero_point->y, WHITE);
+            DrawTexture(game_elements->fruits->Pepper->fruit_texture80, (game_elements->board_size->cols) * game_elements->BlockSize + game_elements->zero_point->x - 260 - textsize.x - cherrytextsize.x, -3 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
         }
         else
         {
-            DrawTextEx(game_elements->menu->font, text, (Vector2) {(game_elements->board_size->cols) * 40 + game_elements->zero_point->x - 20 - textsize.x, -3 * 40 + game_elements->zero_point->y + 15}, 50, 1, YELLOW);        
-            DrawTexture(game_elements->fruits->Pepper->fruit_texture80, (game_elements->board_size->cols) * 40 + game_elements->zero_point->x - 120 - textsize.x, -3 * 40 + game_elements->zero_point->y, WHITE);
+            DrawTextEx(game_elements->menu->font, text, (Vector2) {(game_elements->board_size->cols) * game_elements->BlockSize + game_elements->zero_point->x - 20 - textsize.x, -3 * game_elements->BlockSize + game_elements->zero_point->y + 15}, 50, 1, YELLOW);        
+            DrawTexture(game_elements->fruits->Pepper->fruit_texture80, (game_elements->board_size->cols) * game_elements->BlockSize + game_elements->zero_point->x - 120 - textsize.x, -3 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
         }
     }
 }
-Rectangle ghost_rec_fruit(Ghost *ghost)
+Rectangle ghost_rec_fruit(Ghost *ghost, GameElements *game_elements)
 {
-    Rectangle ghostrec = { ghost->i, ghost->j, 40, 40};
+    Rectangle ghostrec = { ghost->i, ghost->j, game_elements->BlockSize, game_elements->BlockSize};
     return ghostrec;
 }
 void eating_ghost(GameElements *game_elements)
 {
-    Rectangle red_rec = ghost_rec_fruit(game_elements->ghosts->red_ghost);
-    Rectangle green_rec = ghost_rec_fruit(game_elements->ghosts->green_ghost);
-    Rectangle blue_rec = ghost_rec_fruit(game_elements->ghosts->blue_ghost);
-    Rectangle pink_rec = ghost_rec_fruit(game_elements->ghosts->pink_ghost);
-    Rectangle pacman_rec = { game_elements->pacman->i, game_elements->pacman->j, 40, 40};
+    Rectangle red_rec = ghost_rec_fruit(game_elements->ghosts->red_ghost, game_elements);
+    Rectangle green_rec = ghost_rec_fruit(game_elements->ghosts->green_ghost, game_elements);
+    Rectangle blue_rec = ghost_rec_fruit(game_elements->ghosts->blue_ghost, game_elements);
+    Rectangle pink_rec = ghost_rec_fruit(game_elements->ghosts->pink_ghost, game_elements);
+    Rectangle pacman_rec = { game_elements->pacman->i, game_elements->pacman->j, game_elements->BlockSize, game_elements->BlockSize};
 
     if(CheckCollisionRecs(red_rec, pacman_rec) && game_elements->ghosts->red_ghost->exist_flag && game_elements->pacman->exist_flag)
     {
@@ -199,8 +199,8 @@ void eating_ghost(GameElements *game_elements)
     }
     if(game_elements->game_flags->medium_flag || game_elements->game_flags->hard_flag)
     {
-        Rectangle yellow_rec = ghost_rec_fruit(game_elements->ghosts->yellow_ghost);
-        Rectangle fire_red_rec = ghost_rec_fruit(game_elements->ghosts->fire_red_ghost);
+        Rectangle yellow_rec = ghost_rec_fruit(game_elements->ghosts->yellow_ghost, game_elements);
+        Rectangle fire_red_rec = ghost_rec_fruit(game_elements->ghosts->fire_red_ghost, game_elements);
 
         if(CheckCollisionRecs(yellow_rec, pacman_rec) && game_elements->ghosts->yellow_ghost->exist_flag && game_elements->pacman->exist_flag)
         {
@@ -224,8 +224,8 @@ void eating_ghost(GameElements *game_elements)
         }
         if(game_elements->game_flags->hard_flag)
         {
-            Rectangle brown_rec = ghost_rec_fruit(game_elements->ghosts->brown_ghost);
-            Rectangle fire_blue_rec = ghost_rec_fruit(game_elements->ghosts->fire_blue_ghost);
+            Rectangle brown_rec = ghost_rec_fruit(game_elements->ghosts->brown_ghost, game_elements);
+            Rectangle fire_blue_rec = ghost_rec_fruit(game_elements->ghosts->fire_blue_ghost, game_elements);
 
             if(CheckCollisionRecs(brown_rec, pacman_rec) && game_elements->ghosts->brown_ghost->exist_flag && game_elements->pacman->exist_flag)
             {
@@ -281,8 +281,8 @@ void cherry_handling(GameElements *game_elements)
     {
         const char *text = TextFormat("%.2f", 20 - game_elements->fruits->Cherry->time);
         Vector2 textsize = MeasureTextEx(game_elements->menu->font, text, 50, 1);
-        DrawTextEx(game_elements->menu->font, text, (Vector2) {(game_elements->board_size->cols) * 40 + game_elements->zero_point->x - 20 - textsize.x, -3 * 40 + game_elements->zero_point->y + 15}, 50, 1, YELLOW);         
-        DrawTexture(game_elements->fruits->Cherry->fruit_texture80, (game_elements->board_size->cols) * 40 + game_elements->zero_point->x - 120 - textsize.x, -3 * 40 + game_elements->zero_point->y, WHITE);
+        DrawTextEx(game_elements->menu->font, text, (Vector2) {(game_elements->board_size->cols) * game_elements->BlockSize + game_elements->zero_point->x - 20 - textsize.x, -3 * game_elements->BlockSize + game_elements->zero_point->y + 15}, 50, 1, YELLOW);         
+        DrawTexture(game_elements->fruits->Cherry->fruit_texture80, (game_elements->board_size->cols) * game_elements->BlockSize + game_elements->zero_point->x - 120 - textsize.x, -3 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
         eating_ghost(game_elements);
     } 
 }

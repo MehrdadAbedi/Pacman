@@ -48,7 +48,7 @@ void vis_health(GameElements *game_elements)
 {
     for(int i = 0; i < game_elements->pacman->health; i++)
     {
-        DrawTexture(game_elements->pacman->heart, i * 80 + game_elements->zero_point->x - 40, -120 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->pacman->heart, i * 80 + game_elements->zero_point->x - game_elements->BlockSize, -120 + game_elements->zero_point->y, WHITE);
     }
     if(game_elements->pacman->health == 5)
     {
@@ -428,7 +428,8 @@ void game()
         &board_size,
         player,
         board,
-        0
+        0,
+        50
     };
 
 

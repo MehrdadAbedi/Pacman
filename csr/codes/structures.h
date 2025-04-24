@@ -224,6 +224,7 @@ typedef struct {
     char *player;
     int **Board;
     int i;
+    int BlockSize;
 } GameElements;
 
 #endif
