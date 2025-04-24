@@ -290,18 +290,18 @@ void get_map(const char *filename, GameElements *game_elements)
 void show_map1(GameElements *game_elements)
 {
     DrawTexture(game_elements->border->up_left_border, -1 * game_elements->BlockSize + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_right_border, 1400 + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_left_border, -1 * game_elements->BlockSize + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->up_right_border, 1400 + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_right_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_left_border, -1 * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_right_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
 
     for (int i = 0; i < game_elements->board_size->cols; i++) {
         DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, -1 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, 1400 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
         DrawTexture(game_elements->border->column_border, -game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->column_border, 1400 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
@@ -320,18 +320,18 @@ void show_map2(GameElements *game_elements)
     DrawTexture(game_elements->border->cyclone[(game_elements->border->I / 12) % 12], 18 * game_elements->BlockSize + game_elements->zero_point->x, 14 * game_elements->BlockSize + game_elements->zero_point->y, WHITE);    
     
     DrawTexture(game_elements->border->up_left_border, -game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_right_border, 1200 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_left_border, -game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->up_right_border, 1200 + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_right_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_left_border, -game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_right_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
 
     for (int i = 0; i < game_elements->board_size->cols; i++) {
         DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
         DrawTexture(game_elements->border->column_border, -game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->column_border, 1200 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     Color CREAM = { 255, 253, 208, 255 };
@@ -392,18 +392,18 @@ void show_map2(GameElements *game_elements)
 void show_map3(GameElements *game_elements)
 {
     DrawTexture(game_elements->border->up_left_border, -game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_right_border, 1200 + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->down_left_border, -game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
-    DrawTexture(game_elements->border->up_right_border, 1200 + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_right_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->down_left_border, -game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+    DrawTexture(game_elements->border->up_right_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
 
     for (int i = 0; i < game_elements->board_size->cols; i++) {
         DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, -game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, 1200 + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->row_border, i * game_elements->BlockSize + game_elements->zero_point->x, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
         DrawTexture(game_elements->border->column_border, -game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
-        DrawTexture(game_elements->border->column_border, 1200 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
+        DrawTexture(game_elements->border->column_border, game_elements->board_size->rows * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, WHITE);
     }
 
     for (int j = 0; j < game_elements->board_size->rows; j++) {
