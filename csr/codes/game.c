@@ -464,13 +464,13 @@ void game()
         
         if(game_flags.fantasy_map_flag || game_flags.game_over_flag || game_flags.rotated_map_flag)
         {
-            zero_point.x = GetScreenWidth() / 2 - 600;
-            zero_point.y = GetScreenHeight() / 2 - 600;            
+            zero_point.x = GetScreenWidth() / 2 - game_elements.board_size->rows * game_elements.BlockSize / 2;
+            zero_point.y = GetScreenHeight() / 2 - game_elements.board_size->rows * game_elements.BlockSize / 2;            
         }
         else if(game_flags.classic_map_flag)
         {
-            zero_point.x = GetScreenWidth() / 2 - 700;
-            zero_point.y = GetScreenHeight() / 2 - 700;            
+            zero_point.x = GetScreenWidth() / 2 - game_elements.board_size->rows * game_elements.BlockSize / 2;
+            zero_point.y = GetScreenHeight() / 2 - game_elements.board_size->rows * game_elements.BlockSize / 2;            
         }
         else
         {
