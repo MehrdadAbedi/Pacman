@@ -103,6 +103,15 @@ void load_game(GameElements *game_elements)
     //back
     game_elements->border->score_board = LoadTexture("../images/end_game.png");
     game_elements->pacman->flash_move = 0;
+    //records on
+    game_elements->records->mushroom_on = LoadTexture("../images/mushroom_on.png");
+    game_elements->records->cherry_on = LoadTexture("../images/cherry_on.png");
+    game_elements->records->pepper_on = LoadTexture("../images/pepper_on.png");
+    game_elements->records->star_on = LoadTexture("../images/star_on.png");
+    game_elements->records->apple_on = LoadTexture("../images/apple_on.png");
+    game_elements->records->ghost_eat_on = LoadTexture("../images/ghost_eat_on.png");
+    game_elements->records->date_on = LoadTexture("../images/date_on.png");
+    game_elements->records->time_on = LoadTexture("../images/time_on.png");
 }
 void load_sounds(GameElements *game_elements)
 {
@@ -120,23 +129,15 @@ void load_records(GameElements *game_elements)
     //records
     game_elements->records->record_bar = LoadTexture("../images/records_bar.png");
     game_elements->records->mushroom_off = LoadTexture("../images/mushroom_off.png");
-    game_elements->records->mushroom_on = LoadTexture("../images/mushroom_on.png");
-    game_elements->records->cherry_on = LoadTexture("../images/cherry_on.png");
     game_elements->records->cherry_off = LoadTexture("../images/cherry_off.png");
-    game_elements->records->pepper_on = LoadTexture("../images/pepper_on.png");
     game_elements->records->pepper_off = LoadTexture("../images/pepper_off.png");
-    game_elements->records->star_on = LoadTexture("../images/star_on.png");
     game_elements->records->star_off = LoadTexture("../images/star_off.png");
-    game_elements->records->apple_on = LoadTexture("../images/apple_on.png");
     game_elements->records->apple_off = LoadTexture("../images/apple_off.png");
-    game_elements->records->ghost_eat_on = LoadTexture("../images/ghost_eat_on.png");
     game_elements->records->ghost_eat_off = LoadTexture("../images/ghost_eat_off.png");
     game_elements->records->hard = LoadTexture("../images/hard.png");
     game_elements->records->medium = LoadTexture("../images/medium.png");
     game_elements->records->date_off = LoadTexture("../images/date_off.png");
-    game_elements->records->date_on = LoadTexture("../images/date_on.png");
     game_elements->records->time_off = LoadTexture("../images/time_off.png");
-    game_elements->records->time_on = LoadTexture("../images/time_on.png");
 
     //initialize
     game_elements->records->sort_code = 2;
@@ -309,7 +310,7 @@ void show_map1(GameElements *game_elements)
             if (game_elements->Board[j][i] == 1) {
                 DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BLUE);
             } else if (game_elements->Board[j][i] == 2) {
-                DrawCircle(i * game_elements->BlockSize + 20 + game_elements->zero_point->x, j * game_elements->BlockSize + 20 + game_elements->zero_point->y, 10, RED);
+                DrawCircle(i * game_elements->BlockSize + game_elements->BlockSize / 2 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->BlockSize / 2 + game_elements->zero_point->y, 15, RED);
             }
         }
     }
@@ -344,7 +345,7 @@ void show_map2(GameElements *game_elements)
                 DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, BROWN);
             } 
             else if (game_elements->Board[j][i] == 2) {
-                DrawCircle(i * game_elements->BlockSize + 20 + game_elements->zero_point->x, j * game_elements->BlockSize + 20 + game_elements->zero_point->y, 10, RED);
+                DrawCircle(i * game_elements->BlockSize + game_elements->BlockSize / 2 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->BlockSize / 2 + game_elements->zero_point->y, 15, RED);
             }
         }
     }
@@ -411,7 +412,7 @@ void show_map3(GameElements *game_elements)
             if (game_elements->Board[j][i] == 1) {
                 DrawRectangle(i * game_elements->BlockSize + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->zero_point->y, game_elements->BlockSize, game_elements->BlockSize, (Color) {50, 140, 22, 255});
             } else if (game_elements->Board[j][i] == 2) {
-                DrawCircle(i * game_elements->BlockSize + 20 + game_elements->zero_point->x, j * game_elements->BlockSize + 20 + game_elements->zero_point->y, 10, YELLOW);
+                DrawCircle(i * game_elements->BlockSize + game_elements->BlockSize / 2 + game_elements->zero_point->x, j * game_elements->BlockSize + game_elements->BlockSize / 2 + game_elements->zero_point->y, 15, YELLOW);
             }
         }
     }
