@@ -235,45 +235,68 @@ void game_over_screen(GameElements *game_elements)
         game_elements->game_flags->start_flag = false;
     }
 
+    Color YellowTheme = (Color) {255, 196, 49, 255};
+    Color BoxColor = (Color) {21, 209, 207, 255};
+
+    Rectangle rects[10];
+    for(int i = 0; i < 5; i++) {
+        rects[2 * i] = (Rectangle) {(GetScreenWidth() - 1200) / 2 + 50, (GetScreenHeight() - 800) / 2 + 50 + i * (120 + 25), 525, 120};
+        rects[2 * i + 1] = (Rectangle) {(GetScreenWidth() - 1200) / 2 + 50 + 525 + 50, (GetScreenHeight() - 800) / 2 + 50 + i * (120 + 25), 525, 120};
+    }
+
     DrawTexture(game_elements->border->score_board, (GetScreenWidth() - game_elements->border->score_board.width) / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2, WHITE);
+    DrawRectangle((GetScreenWidth() - 1200) / 2, (GetScreenHeight() - 800) / 2, 1200, 800, YellowTheme);
+    for(int i = 0; i < 10; i++) {
+        DrawRectangle(rects[i].x, rects[i].y, rects[i].width, rects[i].height, BoxColor);
+    }
+
+    DrawTexture(game_elements->records->star_on, rects[0].x, rects[0].y, WHITE);
+    DrawTexture(game_elements->records->time_on, rects[1].x, rects[1].y, WHITE);
+    DrawTexture(game_elements->records->pepper_on, rects[2].x, rects[2].y, WHITE);
+    DrawTexture(game_elements->records->cherry_on, rects[3].x, rects[3].y, WHITE);
+    DrawTexture(game_elements->records->apple_on, rects[4].x, rects[4].y, WHITE);
+    DrawTexture(game_elements->records->mushroom_on, rects[5].x, rects[5].y, WHITE);
+    DrawTexture(game_elements->records->date_on, rects[6].x, rects[6].y, WHITE);
+    DrawTexture(game_elements->records->ghost_eat_on, rects[7].x, rects[7].y, WHITE);
+
     text = TextFormat("%d", game_elements->game_info->game_scores);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 340 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 85}, 80, 1, YELLOW);
+    {rects[0].x + rects[0].width / 2 - textsize.x / 2, rects[0].y + rects[0].height / 2 - textsize.y / 2}, 80, 1, YELLOW);
     text = TextFormat("%d:%d", game_elements->game_info->minutes, game_elements->game_info->seconds);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 880 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 85}, 80, 1, YELLOW);
+    {rects[1].x + rects[1].width / 2 - textsize.x / 2, rects[1].y + rects[1].height / 2 - textsize.y / 2}, 80, 1, YELLOW);
     text = TextFormat("%d", game_elements->game_info->pepper_num);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 340 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 213}, 80, 1, YELLOW);
+    {rects[2].x + rects[2].width / 2 - textsize.x / 2, rects[2].y + rects[2].height / 2 - textsize.y / 2}, 80, 1, YELLOW);
     text = TextFormat("%d", game_elements->game_info->cherry_num);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 880 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 213}, 80, 1, YELLOW);   
+    {rects[3].x + rects[3].width / 2 - textsize.x / 2, rects[3].y + rects[3].height / 2 - textsize.y / 2}, 80, 1, YELLOW);   
     text = TextFormat("%d", game_elements->game_info->apple_num);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 340 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 338}, 80, 1, YELLOW);   
+    {rects[4].x + rects[4].width / 2 - textsize.x / 2, rects[4].y + rects[4].height / 2 - textsize.y / 2}, 80, 1, YELLOW);   
     text = TextFormat("%d", game_elements->game_info->mushroom_num);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 880 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 338}, 80, 1, YELLOW);   
-    text = TextFormat("%d/%d/%d %d:%d", game_elements->game_info->year, game_elements->game_info->month, game_elements->game_info->day,
+    {rects[5].x + rects[5].width / 2 - textsize.x / 2, rects[5].y + rects[5].height / 2 - textsize.y / 2}, 80, 1, YELLOW);   
+    text = TextFormat("%d/%d/%d\n%d:%d", game_elements->game_info->year, game_elements->game_info->month, game_elements->game_info->day,
     game_elements->game_info->hour, game_elements->game_info->min);
     textsize = MeasureTextEx(game_elements->menu->font, text, 50, -1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 875 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 478}, 50, -1, YELLOW);
+    {rects[6].x + rects[6].width / 2 - textsize.x / 2, rects[6].y + rects[6].height / 2 - textsize.y / 2}, 50, -1, YELLOW);
     text = TextFormat("%d", game_elements->game_info->ghost_eat);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 340 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 465}, 80, 1, YELLOW);   
+    {rects[7].x + rects[7].width / 2 - textsize.x / 2, rects[7].y + rects[7].height / 2 - textsize.y / 2}, 80, 1, YELLOW);
     text = "MENU";
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);   
-    if(CheckCollisionPointRec(mouse, (Rectangle){(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 186 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 598, 503, 129}))
+    if(CheckCollisionPointRec(mouse, rects[8]))
     {
-        DrawRectangle((GetScreenWidth() - game_elements->border->score_board.width) / 2 + 186 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 598, 503, 129, GREEN);
+        DrawRectangle(rects[8].x, rects[8].y, rects[8].width, rects[8].height, GREEN);
         if(IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             game_elements->game_flags->classic_map_flag = false;
@@ -285,10 +308,10 @@ void game_over_screen(GameElements *game_elements)
         }
     }
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 330 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 620}, 80, 1, YELLOW);   
-    if(CheckCollisionPointRec(mouse, (Rectangle){(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 734 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 598, 503, 129}))
+    {rects[8].x + rects[8].width / 2 - textsize.x / 2, rects[8].y + rects[8].height / 2 - textsize.y / 2}, 80, 1, YELLOW);   
+    if(CheckCollisionPointRec(mouse, rects[9]))
     {
-        DrawRectangle((GetScreenWidth() - game_elements->border->score_board.width) / 2 + 734 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 598, 503, 129, GREEN);
+        DrawRectangle(rects[9].x, rects[9].y, rects[9].width, rects[9].height, GREEN);
         if(IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
             game_elements->game_flags->start_flag = true;
@@ -302,7 +325,7 @@ void game_over_screen(GameElements *game_elements)
     text = "RESTART";
     textsize = MeasureTextEx(game_elements->menu->font,text, 75, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {(GetScreenWidth() - game_elements->border->score_board.width) / 2 + 875 - textsize.x / 2, (GetScreenHeight() - game_elements->border->score_board.height) / 2 + 621}, 75, 1, YELLOW);   
+    {rects[9].x + rects[9].width / 2 - textsize.x / 2, rects[9].y + rects[9].height / 2 - textsize.y / 2}, 75, 1, YELLOW);
     EndDrawing();
 }
 void pacman(GameElements *game_elements)
@@ -458,6 +481,5 @@ int menu(GameElements *game_elements)
     }
     EndDrawing();
 }
-
 
 #endif
