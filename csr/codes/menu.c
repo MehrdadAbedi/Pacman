@@ -291,7 +291,7 @@ void game_over_screen(GameElements *game_elements)
     text = TextFormat("%d", game_elements->game_info->ghost_eat);
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {rects[7].x + rects[7].width / 2 - textsize.x / 2, rects[7].y + rects[7].height / 2 - textsize.y / 2}, 80, 1, YELLOW);   
+    {rects[7].x + rects[7].width / 2 - textsize.x / 2, rects[7].y + rects[7].height / 2 - textsize.y / 2}, 80, 1, YELLOW);
     text = "MENU";
     textsize = MeasureTextEx(game_elements->menu->font, text, 80, 1);   
     if(CheckCollisionPointRec(mouse, rects[8]))
@@ -325,7 +325,7 @@ void game_over_screen(GameElements *game_elements)
     text = "RESTART";
     textsize = MeasureTextEx(game_elements->menu->font,text, 75, 1);
     DrawTextEx(game_elements->menu->font, text, (Vector2)
-    {rects[9].x + rects[9].width / 2 - textsize.x / 2, rects[9].y + rects[9].height / 2 - textsize.y / 2}, 75, 1, YELLOW);   
+    {rects[9].x + rects[9].width / 2 - textsize.x / 2, rects[9].y + rects[9].height / 2 - textsize.y / 2}, 75, 1, YELLOW);
     EndDrawing();
 }
 void pacman(GameElements *game_elements)
@@ -481,6 +481,5 @@ int menu(GameElements *game_elements)
     }
     EndDrawing();
 }
-
 
 #endif
