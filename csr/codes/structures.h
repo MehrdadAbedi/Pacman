@@ -20,8 +20,10 @@ typedef struct {
 } Point;
 typedef struct {
     Texture window;
-    Texture sounds;
-    Texture music;
+    Texture sounds_off;
+    Texture sounds_on;
+    Texture music_off;
+    Texture music_on;
     Texture hard;
     Texture medium;
     Texture easy;

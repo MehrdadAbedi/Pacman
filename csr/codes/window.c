@@ -146,8 +146,10 @@ void load_records(GameElements *game_elements)
 void load_setting(GameElements *game_elements)
 {
     game_elements->setting->window = LoadTexture("../images/setting.png");
-    game_elements->setting->sounds = LoadTexture("../images/setting_sound.png");
-    game_elements->setting->music = LoadTexture("../images/setting-music.png");
+    game_elements->setting->sounds_off = LoadTexture("../images/setting_sound.png");
+    game_elements->setting->sounds_on = LoadTexture("../images/sound_on.png");
+    game_elements->setting->music_off = LoadTexture("../images/setting-music.png");
+    game_elements->setting->music_on = LoadTexture("../images/music_on.png");
     game_elements->setting->easy = LoadTexture("../images/setting-easy.png");
     game_elements->setting->medium = LoadTexture("../images/setting-medium.png");
     game_elements->setting->hard = LoadTexture("../images/setting-hard.png");
@@ -196,8 +198,10 @@ void unload_setting(GameElements *game_elements)
     UnloadTexture(game_elements->setting->easy);
     UnloadTexture(game_elements->setting->hard);
     UnloadTexture(game_elements->setting->medium);
-    UnloadTexture(game_elements->setting->music);
-    UnloadTexture(game_elements->setting->sounds);
+    UnloadTexture(game_elements->setting->music_off);
+    UnloadTexture(game_elements->setting->sounds_off);
+    UnloadTexture(game_elements->setting->music_on);
+    UnloadTexture(game_elements->setting->sounds_on);
     UnloadTexture(game_elements->setting->window);
 }
 void unload_game1(GameElements *game_elements)

@@ -3,6 +3,10 @@
 
 #include "records.h"
 
+
+Color YellowTheme = (Color) {255, 196, 49, 255};
+Color BoxColor = (Color) {21, 209, 207, 255};
+
 void name_window(GameElements *game_elements)
 {
     BeginDrawing();
@@ -45,13 +49,19 @@ void setting_window(GameElements *game_elements)
     Vector2 mouse = GetMousePosition();
     BeginDrawing();
     ClearBackground(game_elements->setting->background[game_elements->setting->i % 3]);
-    DrawTexture(game_elements->setting->window, GetScreenWidth() / 2 - game_elements->setting->window.width / 2, 
-    GetScreenHeight() / 2 - game_elements->setting->window.height / 2, WHITE);
+    Rectangle rect = (Rectangle) {GetScreenWidth() / 2 - 1500 / 2, GetScreenHeight() / 2 - 1000 / 2, 1500, 1000}; 
+    DrawRectangle(rect.x, rect.y, rect.width, rect.height, YellowTheme);
+    Rectangle container1 = (Rectangle) {rect.x + 50, rect.y + 50, 675, 750};
+    DrawRectangle(container1.x, container1.y, container1.width, container1.height, BoxColor);
+    Rectangle container2 = (Rectangle) {rect.x + 775, rect.y + 50, 675, 750};
+    DrawRectangle(container2.x, container2.y, container2.width, container2.height, BoxColor);
+    Rectangle container3 = (Rectangle) {rect.x + 50, rect.y + 850, 1400, 100};
+    DrawRectangle(container3.x, container3.y, container3.width, container3.height, BoxColor);
     if(game_elements->game_flags->easy_flag)
     {
-        DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 94, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 176, 589, 165, RED);
+        DrawRectangle(container1.x + 47.5 - 5, container1.y + 71.25 - 5, 589, 165, RED);
     }
-    if(CheckCollisionPointRec(mouse, (Rectangle){GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 94, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 176, 589, 165}) &&
+    if(CheckCollisionPointRec(mouse, (Rectangle){container1.x + 47.5 - 5, container1.y + 71.25 - 5, 589, 165}) &&
     (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(game_elements->game_flags->sounds_flag)
@@ -63,12 +73,12 @@ void setting_window(GameElements *game_elements)
         game_elements->game_flags->hard_flag = false;
         game_elements->ghosts->ghost_speed = 125;
     }
-    DrawTexture(game_elements->setting->easy, GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 99, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 181, WHITE);
+    DrawTexture(game_elements->setting->easy, container1.x + 47.5, container1.y + 71.25, WHITE);
     if(game_elements->game_flags->medium_flag)
     {
-        DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 94, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 445, 589, 165, RED);
+        DrawRectangle(container1.x + 47.5 - 5, container1.y + 71.25 * 2 + 155 - 5, 589, 165, RED);
     }
-    if(CheckCollisionPointRec(mouse, (Rectangle){GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 94, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 445, 589, 165}) &&
+    if(CheckCollisionPointRec(mouse, (Rectangle){container1.x + 47.5 - 5, container1.y + 71.25 * 2 + 155 - 5, 589, 165}) &&
     (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(game_elements->game_flags->sounds_flag)
@@ -80,12 +90,12 @@ void setting_window(GameElements *game_elements)
         game_elements->game_flags->hard_flag = false;
         game_elements->ghosts->ghost_speed = 150;
     }
-    DrawTexture(game_elements->setting->medium, GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 99, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 450, WHITE);
+    DrawTexture(game_elements->setting->medium, container1.x + 47.5, container1.y + 71.25 * 2 + 155, WHITE);
     if(game_elements->game_flags->hard_flag)
     {
-        DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 94, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 711, 589, 165, RED);
+        DrawRectangle(container1.x + 47.5 - 5, container1.y + 71.25 * 3 + 155 * 2 - 5, 589, 165, RED);
     }
-    if(CheckCollisionPointRec(mouse, (Rectangle){GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 94, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 711, 589, 165}) &&
+    if(CheckCollisionPointRec(mouse, (Rectangle){container1.x + 47.5 - 5, container1.y + 71.25 * 3 + 155 * 2 - 5, 589, 165}) &&
     (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(game_elements->game_flags->sounds_flag)
@@ -97,13 +107,16 @@ void setting_window(GameElements *game_elements)
         game_elements->game_flags->hard_flag = true;
         game_elements->ghosts->ghost_speed = 175;
     }
-    DrawTexture(game_elements->setting->hard, GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 99, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 716, WHITE);
-    if(!game_elements->game_flags->sounds_flag)
-    {
-        DrawTexture(game_elements->setting->sounds, GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 195, WHITE);
-    } 
-    if(CheckCollisionPointRec(mouse, (Rectangle) {GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 195, 
-    game_elements->setting->sounds.width, game_elements->setting->sounds.height}) &&
+    DrawTexture(game_elements->setting->hard, container1.x + 47.5, container1.y + 71.25 * 3 + 155 * 2, WHITE);
+    const char* txt = "Music";
+    Vector2 text_size = MeasureTextEx(game_elements->menu->font, txt, 80, 1);
+    DrawTextEx(game_elements->menu->font, txt, (Vector2) {container2.x + 80, container2.y + 130}, 80, 1, YELLOW);
+    txt = "Sound";
+    Vector2 txtsize0 = MeasureTextEx(game_elements->menu->font, txt, 80, 1);
+    DrawTextEx(game_elements->menu->font, txt, (Vector2) {container2.x + 80, container2.y + 130 * 2 + text_size.y}, 80, 1, YELLOW);
+    DrawTexture(game_elements->game_flags->sounds_flag ? game_elements->setting->sounds_on : game_elements->setting->sounds_off, container2.x + container2.width - 200, container2.y + 130 * 2 + text_size.y + txtsize0.y / 2 - 60, WHITE);
+    if(CheckCollisionPointRec(mouse, (Rectangle) {container2.x + container2.width - 200, container2.y + 130 * 2 + text_size.y + txtsize0.y / 2 - 60, 
+    game_elements->setting->sounds_on.width, game_elements->setting->sounds_on.height}) &&
     (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(game_elements->game_flags->sounds_flag)
@@ -112,12 +125,9 @@ void setting_window(GameElements *game_elements)
         }
         game_elements->game_flags->sounds_flag = !game_elements->game_flags->sounds_flag;
     }   
-    if(!game_elements->game_flags->music_flag)
-    {
-        DrawTexture(game_elements->setting->music, GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 465, WHITE);
-    }  
-    if(CheckCollisionPointRec(mouse, (Rectangle) {GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 465, 
-    game_elements->setting->music.width, game_elements->setting->music.height}) &&
+    DrawTexture(game_elements->game_flags->music_flag ? game_elements->setting->music_on : game_elements->setting->music_off, container2.x + container2.width - 200, container2.y + 130 + text_size.y / 2 - 60, WHITE); 
+    if(CheckCollisionPointRec(mouse, (Rectangle) {container2.x + container2.width - 200, container2.y + 130 + text_size.y / 2 - 60, game_elements->setting->music_on.width,
+    game_elements->setting->music_on.height}) &&
     (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(game_elements->game_flags->sounds_flag)
@@ -126,7 +136,7 @@ void setting_window(GameElements *game_elements)
         }
         game_elements->game_flags->music_flag = !game_elements->game_flags->music_flag;
     }
-    if(CheckCollisionPointRec(mouse, (Rectangle) {GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 728, game_elements->setting->music.width, game_elements->setting->music.height}) &&
+    /*if(CheckCollisionPointRec(mouse, (Rectangle) {GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 728, game_elements->setting->music.width, game_elements->setting->music.height}) &&
     (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(game_elements->game_flags->sounds_flag)
@@ -134,22 +144,16 @@ void setting_window(GameElements *game_elements)
             PlaySound(game_elements->game_sounds->click);
         }        
         game_elements->setting->i++;
-    }
-    DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 728, game_elements->setting->music.width, game_elements->setting->music.height, game_elements->setting->background[game_elements->setting->i % 3]);
+    }*/
+    //DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 1233, GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + 728, game_elements->setting->music.width, game_elements->setting->music.height, game_elements->setting->background[game_elements->setting->i % 3]);
     DrawTexture(game_elements->menu->back, 100, GetScreenHeight() - 200, WHITE);
     if(CheckCollisionPointRec(mouse, (Rectangle) {100, GetScreenHeight() - 200, game_elements->menu->back.width, game_elements->menu->back.height}) && (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || IsKeyDown(KEY_ENTER)))
         game_elements->game_flags->setting_flag = false;
-    DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2, 
-    GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + game_elements->setting->window.height, game_elements->setting->window.width, 200, (Color){3, 56, 244, 255});
-    DrawRectangle(GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 54,
-    GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + game_elements->setting->window.height, game_elements->setting->window.width - 104, 160, game_elements->game_flags->name_flag ? (Color){230, 69, 96, 255} : (Color){12, 164, 126, 255});
+    DrawRectangle(container3.x, container3.y, container3.width, container3.height, game_elements->game_flags->name_flag ? (Color){230, 69, 96, 255} : BoxColor);
     char *text = "player's name:";
-    Vector2 text_size = MeasureTextEx(game_elements->menu->font, text, 50, 0);
-    DrawTextEx(game_elements->menu->font, text, (Vector2){GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 54 + 80 - text_size.y / 2,
-    GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + game_elements->setting->window.height + 80 - text_size.y / 2}, 50, 0, (Color){3, 56, 244, 255});
-    if(CheckCollisionPointRec(mouse, (Rectangle) {GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 54,
-    GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + game_elements->setting->window.height, 
-    game_elements->setting->window.width - 104, 160}) && (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    text_size = MeasureTextEx(game_elements->menu->font, text, 50, 0);
+    DrawTextEx(game_elements->menu->font, text, (Vector2) {container3.x + 50, container3.y + container3.height / 2 - text_size.y / 2}, 50, 0, (Color){3, 56, 244, 255});
+    if(CheckCollisionPointRec(mouse, container3) && (IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         if(!game_elements->game_flags->name_flag)
         {
@@ -179,8 +183,7 @@ void setting_window(GameElements *game_elements)
             game_elements->game_flags->name_flag = false;
         }
     }
-    DrawTextEx(game_elements->menu->font, game_elements->player, (Vector2){GetScreenWidth() / 2 - game_elements->setting->window.width / 2 + 54 + 80 - text_size.y / 2 + text_size.x + 20,
-    GetScreenHeight() / 2 - game_elements->setting->window.height / 2 + game_elements->setting->window.height + 80 - text_size.y / 2}, 50, 0, (Color){3, 56, 244, 255});
+    DrawTextEx(game_elements->menu->font, game_elements->player, (Vector2){container3.x + 50 + text_size.x + 20, container3.y + container3.height / 2 - text_size.y / 2}, 50, 0, (Color){3, 56, 244, 255});
     EndDrawing();
 }
 void game_over_screen(GameElements *game_elements) 
@@ -235,8 +238,6 @@ void game_over_screen(GameElements *game_elements)
         game_elements->game_flags->start_flag = false;
     }
 
-    Color YellowTheme = (Color) {255, 196, 49, 255};
-    Color BoxColor = (Color) {21, 209, 207, 255};
 
     Rectangle rects[10];
     for(int i = 0; i < 5; i++) {
