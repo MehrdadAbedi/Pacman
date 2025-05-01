@@ -173,15 +173,15 @@ void init_game(GameElements *game_elements)
 
     if(game_elements->game_flags->fantasy_map_flag)
     {
-        get_map("../txt-files/fantasy_map.txt", game_elements);    
+        get_map("./txt-files/fantasy_map.txt", game_elements);    
     }
     else if(game_elements->game_flags->classic_map_flag)
     {
-        get_map("../txt-files/classic_map.txt", game_elements);
+        get_map("./txt-files/classic_map.txt", game_elements);
     }
     else if(game_elements->game_flags->rotated_map_flag)
     {
-        get_map("../txt-files/green_map.txt", game_elements);
+        get_map("./txt-files/green_map.txt", game_elements);
     }
     init_ghosts_map(game_elements->ghosts, game_elements);   
     pacman_location(game_elements);
@@ -366,7 +366,7 @@ void game()
 
     Vector2 zero_point;  
     Window window = {
-        LoadImage("../images/icon.png"),
+        LoadImage("./images/icon.png"),
         3200,
         1900,
         FLAG_WINDOW_RESIZABLE,
@@ -443,13 +443,13 @@ void game()
     game_elements.pacman->flash_move = 80;
 
     border.time = 0;
-    game_elements.menu->font = LoadFont("../joystix-monospace.ttf");
+    game_elements.menu->font = LoadFont("./fonts/joystix-monospace.ttf");
     load_sounds(&game_elements);
 
     game_elements.border->I = 0;
-    Texture fantasy_mode = LoadTexture("../images/fantasy_map.png");
-    Texture classic_mode = LoadTexture("../images/classic_map.png");
-    Texture rotated_mode = LoadTexture("../images/rotated_map.png");
+    Texture fantasy_mode = LoadTexture("./images/fantasy_map.png");
+    Texture classic_mode = LoadTexture("./images/classic_map.png");
+    Texture rotated_mode = LoadTexture("./images/rotated_map.png");
     
     border.tranparent_layer = LoadRenderTexture(GetScreenWidth(), GetScreenHeight());
     PlayMusicStream(game_sounds.game_music);
@@ -510,7 +510,7 @@ void game()
             {
                 if(game_elements.records->record_bar.id == 0)
                     load_records(&game_elements);
-                vis_records("../txt-files/records.txt", &game_elements);
+                vis_records("./txt-files/records.txt", &game_elements);
                 Rectangle rec_back = {100, GetScreenHeight() - 200, 100, 100};
                 Vector2 mouse = GetMousePosition();
                 if(CheckCollisionPointRec(mouse, rec_back) && (IsMouseButtonDown(MOUSE_BUTTON_LEFT) || IsKeyDown(KEY_ENTER)))

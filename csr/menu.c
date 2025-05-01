@@ -305,7 +305,7 @@ void game_over_screen(GameElements *game_elements)
             game_elements->game_flags->rotated_map_flag = false;
             game_elements->game_flags->start_flag = false;
             game_elements->game_flags->game_over_flag = false;
-            save_data("../txt-files/records.txt", game_elements->game_info);
+            save_data("./txt-files/records.txt", game_elements->game_info);
         }
     }
     DrawTextEx(game_elements->menu->font, text, (Vector2)
@@ -320,7 +320,7 @@ void game_over_screen(GameElements *game_elements)
             game_elements->game_flags->classic_map_flag = false;
             game_elements->game_flags->fantasy_map_flag = false;
             game_elements->game_flags->rotated_map_flag = false;
-            save_data("../txt-files/records.txt", game_elements->game_info);
+            save_data("./txt-files/records.txt", game_elements->game_info);
         }
     }
     text = "RESTART";
