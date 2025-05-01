@@ -74,82 +74,71 @@ int read_data(const char *filename, GameInfo **info_array)
 void sort_system(GameElements *game_elements, GameInfo **info_array)
 {
     Vector2 mouse = GetMousePosition();
+    int blockSize = 120;
+    Rectangle rects[8]; 
+    for(int counter = 0; counter < 8; counter++) {
+        rects[counter] = (Rectangle) {blockSize, blockSize * (counter + 1) + 20 * counter, blockSize, blockSize};
+    }
 
     DrawTexture(game_elements->records->sort_code == 2 ? game_elements->records->star_on : game_elements->records->star_off, 
-    100, 100,
-    WHITE);
+    rects[0].x, rects[0].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 3 ? game_elements->records->pepper_on : game_elements->records->pepper_off, 
-    100, 220,
-    WHITE);
+    rects[1].x, rects[1].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 4 ? game_elements->records->cherry_on : game_elements->records->cherry_off, 
-    100, 340,
-    WHITE);
+    rects[2].x, rects[2].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 5 ? game_elements->records->apple_on : game_elements->records->apple_off, 
-    100, 460,
-    WHITE);
+    rects[3].x, rects[3].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 6 ? game_elements->records->mushroom_on : game_elements->records->mushroom_off, 
-    100, 580,
-    WHITE);
+    rects[4].x, rects[4].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 7 ? game_elements->records->ghost_eat_on : game_elements->records->ghost_eat_off, 
-    100, 700,
-    WHITE);
+    rects[5].x, rects[5].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 8 ? game_elements->records->date_on : game_elements->records->date_off, 
-    100, 820,
-    WHITE);
+    rects[6].x, rects[6].y, WHITE);
     DrawTexture(game_elements->records->sort_code == 9 ? game_elements->records->time_on : game_elements->records->time_off, 
-    100, 940,
-    WHITE);
-    Rectangle rec2 = {100, 100, 100, 100};
-    Rectangle rec3 = {100, 220, 100, 100};    
-    Rectangle rec4 = {100, 340, 100, 100};    
-    Rectangle rec5 = {100, 460, 100, 100};
-    Rectangle rec6 = {100, 580, 100, 100};    
-    Rectangle rec7 = {100, 700, 100, 100};   
-    Rectangle rec8 = {100, 820, 100, 100}; 
-    Rectangle rec9 = {100, 940, 100, 100};
-    if(CheckCollisionPointRec(mouse, rec2) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    rects[7].x, rects[7].y, WHITE);
+    if(CheckCollisionPointRec(mouse, rects[0]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 2;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec3) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[1]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 3;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec4) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[2]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 4;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec5) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[3]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 5;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec6) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[4]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 6;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec7) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[5]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 7;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec8) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[6]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 8;
         if(game_elements->game_flags->sounds_flag)
             PlaySound(game_elements->game_sounds->click);
     }
-    else if(CheckCollisionPointRec(mouse, rec9) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
+    else if(CheckCollisionPointRec(mouse, rects[7]) && (IsKeyDown(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         game_elements->records->sort_code = 9;
         if(game_elements->game_flags->sounds_flag)

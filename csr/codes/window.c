@@ -103,15 +103,6 @@ void load_game(GameElements *game_elements)
     //back
     game_elements->border->score_board = LoadTexture("../images/end_game.png");
     game_elements->pacman->flash_move = 0;
-    //records on
-    game_elements->records->mushroom_on = LoadTexture("../images/mushroom_on.png");
-    game_elements->records->cherry_on = LoadTexture("../images/cherry_on.png");
-    game_elements->records->pepper_on = LoadTexture("../images/pepper_on.png");
-    game_elements->records->star_on = LoadTexture("../images/star_on.png");
-    game_elements->records->apple_on = LoadTexture("../images/apple_on.png");
-    game_elements->records->ghost_eat_on = LoadTexture("../images/ghost_eat_on.png");
-    game_elements->records->date_on = LoadTexture("../images/date_on.png");
-    game_elements->records->time_on = LoadTexture("../images/time_on.png");
 }
 void load_sounds(GameElements *game_elements)
 {
@@ -156,6 +147,16 @@ void load_setting(GameElements *game_elements)
 }
 void init_menu(GameElements *game_elements) //becareful you should call this after creating window
 {
+    //records on
+    game_elements->records->mushroom_on = LoadTexture("../images/mushroom_on.png");
+    game_elements->records->cherry_on = LoadTexture("../images/cherry_on.png");
+    game_elements->records->pepper_on = LoadTexture("../images/pepper_on.png");
+    game_elements->records->star_on = LoadTexture("../images/star_on.png");
+    game_elements->records->apple_on = LoadTexture("../images/apple_on.png");
+    game_elements->records->ghost_eat_on = LoadTexture("../images/ghost_eat_on.png");
+    game_elements->records->date_on = LoadTexture("../images/date_on.png");
+    game_elements->records->time_on = LoadTexture("../images/time_on.png");
+    
     //loading textures
     game_elements->menu->pacman = LoadTexture("../images/big_pacman.png");
     game_elements->menu->pacman_right = LoadTexture("../images/big_pacman_right.png");
