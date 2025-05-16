@@ -203,6 +203,7 @@ typedef struct {
     Texture date_off;
     Texture time_on;
     Texture time_off;
+    Texture pacman_on;
     Texture medium;
     Texture hard;
     int up_down;

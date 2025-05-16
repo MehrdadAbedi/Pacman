@@ -239,6 +239,7 @@ int vis_records(const char *filename, GameElements *game_elements)
     else
         sort_array(&info_array, number - 1, game_elements->records->sort_code);
     DrawTexture(game_elements->menu->back, 100, GetScreenHeight() - 200, WHITE);
+    
     for(int i = 0; i < (number < 10 ? number : 10); i++)
     {
         DrawTexture(game_elements->records->record_bar, GetScreenWidth() / 2 - game_elements->records->record_bar.width / 2, 100 + i * 380 + game_elements->records->up_down, WHITE);
@@ -282,6 +283,33 @@ int vis_records(const char *filename, GameElements *game_elements)
             DrawTexture(game_elements->records->hard, GetScreenWidth() / 2 + game_elements->records->record_bar.width / 2 - game_elements->records->hard.width,
             100 + i * 380 + game_elements->records->up_down, WHITE);            
     }
+    Rectangle rects = (Rectangle) {GetScreenWidth() / 2 - 2700 / 2 + 100, 100 + 380 * 0 + game_elements->records->up_down, 2700, 320};
+    DrawRectangle(rects.x, rects.y, rects.width, rects.height, (Color) {255, 196, 49, 255});
+    DrawRectangle(rects.x - 100, rects.y, 100, 100, (Color) {255, 196, 49, 255});
+    DrawTexture(game_elements->records->pacman_on, rects.x + 20, rects.y + 26.6, WHITE);
+    DrawRectangle(rects.x + 160, rects.y + 26.6, 800, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->star_on, rects.x + 960 + 20, rects.y + 26.6, WHITE);
+    DrawRectangle(rects.x + 960 + 160, rects.y + 26.6, 200, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->clock_on, rects.x + 1120, rects.y + 26.6, WHITE);
+    DrawRectangle(rects.x + 1480, rects.y + 26.6, 300, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->pepper_on, rects.x + 1940 - 140, rects.y + 26.6, WHITE);
+    DrawRectangle(rects.x + 1940, rects.y + 26.6, 200, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->cherry_on, rects.x + 2300 - 140, rects.y + 26.6, WHITE);
+    DrawRectangle(rects.x + 2300, rects.y + 26.6, 200, 120, (Color) {21, 209, 207, 255});
+
+    DrawRectangle(rects.x + 160, rects.y + 26.6 + 120 + 26.6, 200, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->apple_on, rects.x + 20, rects.y + 26.6 + 120 + 26.6, WHITE);
+    DrawRectangle(rects.x + 160 + 200 + 160, rects.y + 26.6 + 120 + 26.6, 200, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->mushroom_on, rects.x + 160 + 200, rects.y + 26.6 + 120 + 26.6, WHITE);
+    DrawRectangle(rects.x + 160 + 200 + 160 + 200 + 160, rects.y + 26.6 + 120 + 26.6, 200, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->ghost_eat_on, rects.x + 160 + 200 + 160 + 200, rects.y + 26.6 + 120 + 26.6, WHITE);    
+    DrawRectangle(rects.x + 160 + 200 + 160 + 200 + 160 + 200 + 160, rects.y + 26.6 + 120 + 26.6, 400, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->clock_on, rects.x + 160 + 200 + 160 + 200 + 160 + 200, rects.y + 26.6 + 120 + 26.6, WHITE);    
+    DrawRectangle(rects.x + 160 + 200 + 160 + 200 + 160 + 200 + 160 + 400 + 160, rects.y + 26.6 + 120 + 26.6, 700, 120, (Color) {21, 209, 207, 255});
+    DrawTexture(game_elements->records->date_on, rects.x + 160 + 200 + 160 + 200 + 160 + 200 + 160 + 400, rects.y + 26.6 + 120 + 26.6, WHITE);    
+
+
+
     EndDrawing();
     free(info_array);
     return 0;

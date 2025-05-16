@@ -156,6 +156,7 @@ void init_menu(GameElements *game_elements) //becareful you should call this aft
     game_elements->records->ghost_eat_on = LoadTexture("./images/ghost_eat_on.png");
     game_elements->records->date_on = LoadTexture("./images/date_on.png");
     game_elements->records->time_on = LoadTexture("./images/time_on.png");
+    game_elements->records->pacman_on = LoadTexture("./images/pacman_on.png");
     
     //loading textures
     game_elements->menu->pacman = LoadTexture("./images/big_pacman.png");
